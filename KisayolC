@@ -5,12 +5,12 @@ using namespace std;
 
 int main()
 {
-    // Dosya yolu
+    // Dosya yolu ve adını tanımla
     const char* dosya_yolu = "C:\\OrnekKlasor\\ornek_dosya.txt";
 
     // Dosyaya erişmek için kısayol tuşu atanması
-    if (RegisterHotKey(NULL, 1, MOD_NOREPEAT, VK_F12)) {
-        cout << "Dosyaya erismek icin F12 tusuna basmaniz yeterli!" << endl;
+    if (RegisterHotKey(NULL, 1, MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT, '1')) {
+        cout << "Dosyaya erismek icin Ctrl+Shift+1 tusuna basmaniz yeterli!" << endl;
     }
     else {
         cout << "Kisayol tusu atanamadi!" << endl;
