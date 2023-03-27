@@ -1,0 +1,34 @@
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+int main()
+{
+    // Dosya yolu
+    const char* dosya_yolu = "C:\\OrnekKlasor\\ornek_dosya.txt";
+
+    // Dosyaya erişmek için kısayol tuşu atanması
+    if (RegisterHotKey(NULL, 1, MOD_NOREPEAT, VK_F12)) {
+        cout << "Dosyaya erismek icin F12 tusuna basmaniz yeterli!" << endl;
+    }
+    else {
+        cout << "Kisayol tusu atanamadi!" << endl;
+        return 1;
+    }
+
+    // Kısayol tuşu bekleme döngüsü
+    MSG msg = { 0 };
+    while (GetMessage(&msg, NULL, 0, 0) != 0) {
+        if (msg.message == WM_HOTKEY) {
+            // Dosyaya erişme kodları burada yazılır
+            ShellExecute(NULL, "open", dosya_yolu, NULL, NULL, SW_SHOWNORMAL);
+            break;
+        }
+    }
+
+    // Kısayol tuşu atamayı kaldır
+    UnregisterHotKey(NULL, 1);
+
+    return 0;
+}
